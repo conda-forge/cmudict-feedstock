@@ -1,5 +1,5 @@
 {% set name = "cmudict" %}
-{% set version = "1.0.33" %}
+{% set version = "1.1.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/cmudict-{{ version }}.tar.gz
-  sha256: f4c463c8406a2414f9f9058d60e45a7ce69081892ce27102dc91dc1bc6f92115
+  sha256: 057f190c16c950433de740a6700dac72d0cbc0526ff01e432e4d644fe259936f
 
 build:
   noarch: python
@@ -23,6 +23,7 @@ requirements:
     - python >={{ python_min }},<4.0
     - importlib-metadata >=5
     - importlib-resources >=5
+    # - importlib_resources >=5
 
 test:
   imports:
