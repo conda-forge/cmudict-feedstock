@@ -1,0 +1,54 @@
+schema_version: 1
+
+context:
+  name: cmudict
+  version: 1.1.1
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cmudict-${{ version }}.tar.gz
+  sha256: 23c3914c85465f6a7d26d2d8974fa341dd7bc924d1ffa501b41406b936923db1
+
+build:
+  number: 1
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python ${{ python_min }}.*
+    - poetry-core
+    - pip
+  run:
+    - python >=${{ python_min }},<4.0
+    - importlib-metadata >=5
+    - importlib-resources >=5
+    # - importlib_resources >=5
+    # - importlib_resources >=5
+
+tests:
+  - python:
+      imports:
+        - cmudict
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+
+about:
+  summary: A versioned python wrapper package for The CMU Pronouncing Dictionary data files.
+  license: GPL-3.0-or-later AND BSD-2-Clause
+  license_file:
+    - LICENSE
+    - src/cmudict/data/LICENSE
+  homepage: https://github.com/prosegrinder/python-cmudict
+
+extra:
+  recipe-maintainers:
+    - rxm7706
