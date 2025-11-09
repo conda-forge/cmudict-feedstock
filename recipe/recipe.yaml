@@ -3,7 +3,7 @@ schema_version: 1
 
 context:
   name: cmudict
-  version: "1.1.1"
+  version: "1.1.2"
 
 package:
   name: ${{ name|lower }}
@@ -11,10 +11,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/cmudict-${{ version }}.tar.gz
-  sha256: 23c3914c85465f6a7d26d2d8974fa341dd7bc924d1ffa501b41406b936923db1
+  sha256: 22165def734f1a9c191ca168c066d7ea582c8b8da790da3e8344e965e2647db8
 
 build:
-  number: 1
+  number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
